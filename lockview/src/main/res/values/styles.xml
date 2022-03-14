@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="NumberInPasscode">
+    <style name="NumberInLockcode">
         <item name="android:layout_width">54dp</item>
         <item name="android:layout_height">54dp</item>
         <item name="android:background">@drawable/layout_selector_tran</item>

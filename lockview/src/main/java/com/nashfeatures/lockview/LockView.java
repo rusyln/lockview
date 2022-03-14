@@ -29,8 +29,8 @@ import java.lang.annotation.RetentionPolicy;
 
 public class LockView extends FrameLayout implements View.OnClickListener {
     private boolean secondInput;
-    private String localPasscode = "";
-    private PasscodeViewListener listener;
+    private String localLockcode = "";
+    private LockcodeViewListener listener;
     private ViewGroup layout_psd;
     private TextView tv_input_tip;
     private TextView number0, number1, number2, number3, number4, number5, number6, number7, number8, number9;
@@ -38,19 +38,19 @@ public class LockView extends FrameLayout implements View.OnClickListener {
     private ImageView iv_lock, iv_ok;
     private View cursor;
 
-    private String firstInputTip = "Enter a passcode of 4 digits";
-    private String secondInputTip = "Re-enter new passcode";
-    private String wrongLengthTip = "Enter a passcode of 4 digits";
-    private String wrongInputTip = "Passcode do not match";
-    private String correctInputTip = "Passcode is correct";
+    private String firstInputTip = "Enter a pin of 4 digits";
+    private String secondInputTip = "Re-enter new pin";
+    private String wrongLengthTip = "Enter a pin of 4 digits";
+    private String wrongInputTip = "PIN do not match";
+    private String correctInputTip = "PIN is correct";
 
-    private int passcodeLength = 4;
+    private int lockcodeLength = 4;
     private int correctStatusColor = 0xFF61C560; //0xFFFF0000
     private int wrongStatusColor = 0xFFF24055;
     private int normalStatusColor = 0xFFFFFFFF;
     private int numberTextColor = 0xFF747474;
-    private int passcodeType = PasscodeViewType.TYPE_SET_PASSCODE;
-    private boolean isPasswordEncrypted = false;
+    private int lockcodeType = LockcodeViewType.TYPE_SET_LOCKCODE;
+    private boolean isLockEncrypted = false;
 
     public LockView(@NonNull Context context) {
         this(context, null);
@@ -59,30 +59,30 @@ public class LockView extends FrameLayout implements View.OnClickListener {
     public LockView(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
 
-        inflate(getContext(), R.layout.layout_passcode_view, this);
+        inflate(getContext(), R.layout.layout_lockcode_view, this);
 
-        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.PasscodeView);
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.LockcodeView);
         try {
-            passcodeType = typedArray.getInt(R.styleable.PasscodeView_passcodeViewType, passcodeType);
-            passcodeLength = typedArray.getInt(R.styleable.PasscodeView_passcodeLength, passcodeLength);
-            normalStatusColor = typedArray.getColor(R.styleable.PasscodeView_normalStateColor, normalStatusColor);
-            wrongStatusColor = typedArray.getColor(R.styleable.PasscodeView_wrongStateColor, wrongStatusColor);
-            correctStatusColor = typedArray.getColor(R.styleable.PasscodeView_correctStateColor, correctStatusColor);
-            numberTextColor = typedArray.getColor(R.styleable.PasscodeView_numberTextColor, numberTextColor);
-            firstInputTip = typedArray.getString(R.styleable.PasscodeView_firstInputTip);
-            secondInputTip = typedArray.getString(R.styleable.PasscodeView_secondInputTip);
-            wrongLengthTip = typedArray.getString(R.styleable.PasscodeView_wrongLengthTip);
-            wrongInputTip = typedArray.getString(R.styleable.PasscodeView_wrongInputTip);
-            correctInputTip = typedArray.getString(R.styleable.PasscodeView_correctInputTip);
+            lockcodeType = typedArray.getInt(R.styleable.LockcodeView_lockedViewType, lockcodeType);
+            lockcodeLength = typedArray.getInt(R.styleable.LockcodeView_lockedLength, lockcodeLength);
+            normalStatusColor = typedArray.getColor(R.styleable.LockcodeView_normalStateColor, normalStatusColor);
+            wrongStatusColor = typedArray.getColor(R.styleable.LockcodeView_wrongStateColor, wrongStatusColor);
+            correctStatusColor = typedArray.getColor(R.styleable.LockcodeView_correctStateColor, correctStatusColor);
+            numberTextColor = typedArray.getColor(R.styleable.LockcodeView_numberTextColor, numberTextColor);
+            firstInputTip = typedArray.getString(R.styleable.LockcodeView_firstInputTip);
+            secondInputTip = typedArray.getString(R.styleable.LockcodeView_secondInputTip);
+            wrongLengthTip = typedArray.getString(R.styleable.LockcodeView_wrongLengthTip);
+            wrongInputTip = typedArray.getString(R.styleable.LockcodeView_wrongInputTip);
+            correctInputTip = typedArray.getString(R.styleable.LockcodeView_correctInputTip);
         } finally {
             typedArray.recycle();
         }
 
-        firstInputTip = firstInputTip == null ? "Enter a passcode of 4 digits" : firstInputTip;
-        secondInputTip = secondInputTip == null ? "Re-enter new passcode" : secondInputTip;
+        firstInputTip = firstInputTip == null ? "Enter a pin of 4 digits" : firstInputTip;
+        secondInputTip = secondInputTip == null ? "Re-enter new pin" : secondInputTip;
         wrongLengthTip = wrongLengthTip == null ? firstInputTip : wrongLengthTip;
-        wrongInputTip = wrongInputTip == null ? "Passcode do not match" : wrongInputTip;
-        correctInputTip = correctInputTip == null ? "Passcode is correct" : correctInputTip;
+        wrongInputTip = wrongInputTip == null ? "PIN do not match" : wrongInputTip;
+        correctInputTip = correctInputTip == null ? "PIN is correct" : correctInputTip;
 
         init();
     }
@@ -173,44 +173,44 @@ public class LockView extends FrameLayout implements View.OnClickListener {
     public void onClick(View view) {
         int number = (int) view.getTag();
         addChar(number);
-        if(layout_psd.getChildCount() == passcodeLength){
+        if(layout_psd.getChildCount() == lockcodeLength){
             next();
         }
     }
 
-    public String getLocalPasscode() {
-        return localPasscode;
+    public String getLocalLockcode() {
+        return localLockcode;
     }
 
-    public LockView isPasswordEncrypted(boolean isPasswordEncrypted) {
-        this.isPasswordEncrypted = isPasswordEncrypted;
+    public LockView isLockEncrypted(boolean isLockEncrypted) {
+        this.isLockEncrypted = isLockEncrypted;
         return this;
     }
 
     /**
-     * set  localPasscode
+     * set  localLockcode
      *
-     * @param localPasscode the code will to check
+     * @param localLockcode the code will to check
      */
-    public LockView setLocalPasscode(String localPasscode) {
-        if(! this.isPasswordEncrypted) {
-            for (int i = 0; i < localPasscode.length(); i++) {
-                char c = localPasscode.charAt(i);
+    public LockView setLocalLockcode(String localLockcode) {
+        if(! this.isLockEncrypted) {
+            for (int i = 0; i < localLockcode.length(); i++) {
+                char c = localLockcode.charAt(i);
                 if (c < '0' || c > '9') {
                     throw new RuntimeException("must be number digit");
                 }
             }
         }
-        this.localPasscode = localPasscode;
-        this.passcodeType = PasscodeViewType.TYPE_CHECK_PASSCODE;
+        this.localLockcode = localLockcode;
+        this.lockcodeType = LockcodeViewType.TYPE_CHECK_LOCKCODE;
         return this;
     }
 
-    public PasscodeViewListener getListener() {
+    public LockcodeViewListener getListener() {
         return listener;
     }
 
-    public LockView setListener(PasscodeViewListener listener) {
+    public LockView setListener(LockcodeViewListener listener) {
         this.listener = listener;
         return this;
     }
@@ -260,12 +260,12 @@ public class LockView extends FrameLayout implements View.OnClickListener {
         return this;
     }
 
-    public int getPasscodeLength() {
-        return passcodeLength;
+    public int getLockcodeLength() {
+        return lockcodeLength;
     }
 
-    public LockView setPasscodeLength(int passcodeLength) {
-        this.passcodeLength = passcodeLength;
+    public LockView setLockcodeLength(int lockcodeLength) {
+        this.lockcodeLength = lockcodeLength;
         return this;
     }
 
@@ -305,19 +305,19 @@ public class LockView extends FrameLayout implements View.OnClickListener {
         return this;
     }
 
-    public @PasscodeViewType
-    int getPasscodeType() {
-        return passcodeType;
+    public @LockcodeViewType
+    int getLockcodeType() {
+        return lockcodeType;
     }
 
-    public LockView setPasscodeType(@PasscodeViewType int passcodeType) {
-        this.passcodeType = passcodeType;
+    public LockView setLockcodeType(@LockcodeViewType int lockcodeType) {
+        this.lockcodeType = lockcodeType;
         return this;
     }
 
     /**
      * <pre>
-     * passcodeView.setListener(new PasscodeView.PasscodeViewListener() {
+     * passcodeView.setListener(new PasscodeView.LockcodeViewListener() {
      * public void onFail() {
      * }
      *
@@ -347,29 +347,29 @@ public class LockView extends FrameLayout implements View.OnClickListener {
      * @return true if val is right passcode
      */
     protected boolean equals(String val) {
-        if(this.isPasswordEncrypted) {
-            return BCrypt.checkpw(val, localPasscode);
+        if(this.isLockEncrypted) {
+            return BCrypt.checkpw(val, localLockcode);
         } else {
-            return localPasscode.equals(val);
+            return localLockcode.equals(val);
         }
     }
 
     private void next() {
-        if (passcodeType == PasscodeViewType.TYPE_CHECK_PASSCODE && TextUtils.isEmpty(localPasscode)) {
-            throw new RuntimeException("must set localPasscode when type is TYPE_CHECK_PASSCODE");
+        if (lockcodeType == LockcodeViewType.TYPE_CHECK_LOCKCODE && TextUtils.isEmpty(localLockcode)) {
+            throw new RuntimeException("must set localLockcode when type is TYPE_CHECK_LOCKCODE");
         }
 
-        String psd = getPasscodeFromView();
-        if (psd.length() != passcodeLength) {
+        String psd = getLockcodeFromView();
+        if (psd.length() != lockcodeLength) {
             tv_input_tip.setText(wrongLengthTip);
             runTipTextAnimation();
             return;
         }
 
-        if (passcodeType == PasscodeViewType.TYPE_SET_PASSCODE && !secondInput) {
+        if (lockcodeType == LockcodeViewType.TYPE_SET_LOCKCODE && !secondInput) {
             // second input
             tv_input_tip.setText(secondInputTip);
-            localPasscode = psd;
+            localLockcode = psd;
             clearChar();
             secondInput = true;
             return;
@@ -384,7 +384,7 @@ public class LockView extends FrameLayout implements View.OnClickListener {
     }
 
     private void addChar(int number) {
-        if (layout_psd.getChildCount() >= passcodeLength) {
+        if (layout_psd.getChildCount() >= lockcodeLength) {
             return;
         }
         com.nashfeatures.lockview.CircleView psdView = new com.nashfeatures.lockview.CircleView(getContext());
@@ -450,7 +450,7 @@ public class LockView extends FrameLayout implements View.OnClickListener {
                                 super.onAnimationEnd(animation);
                                 setPSDViewBackgroundResource(normalStatusColor);
                                 if (secondInput && listener != null) {
-                                    listener.onFail(getPasscodeFromView());
+                                    listener.onFail(getLockcodeFromView());
                                 }
                             }
                         });
@@ -493,7 +493,7 @@ public class LockView extends FrameLayout implements View.OnClickListener {
                                     public void onAnimationEnd(Animator animation) {
                                         super.onAnimationEnd(animation);
                                         if (listener != null) {
-                                            listener.onSuccess(getPasscodeFromView());
+                                            listener.onSuccess(getLockcodeFromView());
                                         }
                                     }
                                 }).start();
@@ -503,7 +503,7 @@ public class LockView extends FrameLayout implements View.OnClickListener {
 
     }
 
-    private String getPasscodeFromView() {
+    private String getLockcodeFromView() {
         StringBuilder sb = new StringBuilder();
         int childCount = layout_psd.getChildCount();
         for (int i = 0; i < childCount; i++) {
@@ -515,24 +515,24 @@ public class LockView extends FrameLayout implements View.OnClickListener {
     }
 
     /**
-     * The type for this passcodeView
+     * The type for this lockcodeView
      */
-    @IntDef({PasscodeViewType.TYPE_SET_PASSCODE, PasscodeViewType.TYPE_CHECK_PASSCODE})
+    @IntDef({LockcodeViewType.TYPE_SET_LOCKCODE, LockcodeViewType.TYPE_CHECK_LOCKCODE})
     @Retention(RetentionPolicy.SOURCE)
-    public @interface PasscodeViewType {
+    public @interface LockcodeViewType {
 
         /**
-         * set passcode, with twice input
+         * set lockcode, with twice input
          */
-        int TYPE_SET_PASSCODE = 0;
+        int TYPE_SET_LOCKCODE = 0;
 
         /**
-         * check passcode, must pass the result as parameter {@link LockView#setLocalPasscode(String)}
+         * check lockcode, must pass the result as parameter {@link LockView#setLocalLockcode(String)}
          */
-        int TYPE_CHECK_PASSCODE = 1;
+        int TYPE_CHECK_LOCKCODE = 1;
     }
 
-    public interface PasscodeViewListener {
+    public interface LockcodeViewListener {
 
         void onFail(String wrongNumber);
 
