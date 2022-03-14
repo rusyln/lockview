@@ -9,7 +9,7 @@ android {
     defaultConfig {
         minSdk 21
         targetSdk 32
-        versionName "1.0.0"
+        versionName "1.0.1"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         consumerProguardFiles "consumer-rules.pro"
@@ -44,7 +44,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.github.rusyl' //your git id
                 artifactId = 'lockview' //your-repository
-                version = '1.0.0' // As same as the Tag
+                version = '1.0.1' // As same as the Tag
             }
         }
     }
