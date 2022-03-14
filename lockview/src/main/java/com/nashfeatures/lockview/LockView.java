@@ -27,7 +27,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 
-public class PasscodeView extends FrameLayout implements View.OnClickListener {
+public class LockView extends FrameLayout implements View.OnClickListener {
     private boolean secondInput;
     private String localPasscode = "";
     private PasscodeViewListener listener;
@@ -52,11 +52,11 @@ public class PasscodeView extends FrameLayout implements View.OnClickListener {
     private int passcodeType = PasscodeViewType.TYPE_SET_PASSCODE;
     private boolean isPasswordEncrypted = false;
 
-    public PasscodeView(@NonNull Context context) {
+    public LockView(@NonNull Context context) {
         this(context, null);
     }
 
-    public PasscodeView(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public LockView(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
 
         inflate(getContext(), R.layout.layout_passcode_view, this);
@@ -182,7 +182,7 @@ public class PasscodeView extends FrameLayout implements View.OnClickListener {
         return localPasscode;
     }
 
-    public PasscodeView isPasswordEncrypted(boolean isPasswordEncrypted) {
+    public LockView isPasswordEncrypted(boolean isPasswordEncrypted) {
         this.isPasswordEncrypted = isPasswordEncrypted;
         return this;
     }
@@ -192,7 +192,7 @@ public class PasscodeView extends FrameLayout implements View.OnClickListener {
      *
      * @param localPasscode the code will to check
      */
-    public PasscodeView setLocalPasscode(String localPasscode) {
+    public LockView setLocalPasscode(String localPasscode) {
         if(! this.isPasswordEncrypted) {
             for (int i = 0; i < localPasscode.length(); i++) {
                 char c = localPasscode.charAt(i);
@@ -210,7 +210,7 @@ public class PasscodeView extends FrameLayout implements View.OnClickListener {
         return listener;
     }
 
-    public PasscodeView setListener(PasscodeViewListener listener) {
+    public LockView setListener(PasscodeViewListener listener) {
         this.listener = listener;
         return this;
     }
@@ -219,7 +219,7 @@ public class PasscodeView extends FrameLayout implements View.OnClickListener {
         return firstInputTip;
     }
 
-    public PasscodeView setFirstInputTip(String firstInputTip) {
+    public LockView setFirstInputTip(String firstInputTip) {
         this.firstInputTip = firstInputTip;
         return this;
     }
@@ -228,7 +228,7 @@ public class PasscodeView extends FrameLayout implements View.OnClickListener {
         return secondInputTip;
     }
 
-    public PasscodeView setSecondInputTip(String secondInputTip) {
+    public LockView setSecondInputTip(String secondInputTip) {
         this.secondInputTip = secondInputTip;
         return this;
     }
@@ -237,7 +237,7 @@ public class PasscodeView extends FrameLayout implements View.OnClickListener {
         return wrongLengthTip;
     }
 
-    public PasscodeView setWrongLengthTip(String wrongLengthTip) {
+    public LockView setWrongLengthTip(String wrongLengthTip) {
         this.wrongLengthTip = wrongLengthTip;
         return this;
     }
@@ -246,7 +246,7 @@ public class PasscodeView extends FrameLayout implements View.OnClickListener {
         return wrongInputTip;
     }
 
-    public PasscodeView setWrongInputTip(String wrongInputTip) {
+    public LockView setWrongInputTip(String wrongInputTip) {
         this.wrongInputTip = wrongInputTip;
         return this;
     }
@@ -255,7 +255,7 @@ public class PasscodeView extends FrameLayout implements View.OnClickListener {
         return correctInputTip;
     }
 
-    public PasscodeView setCorrectInputTip(String correctInputTip) {
+    public LockView setCorrectInputTip(String correctInputTip) {
         this.correctInputTip = correctInputTip;
         return this;
     }
@@ -264,7 +264,7 @@ public class PasscodeView extends FrameLayout implements View.OnClickListener {
         return passcodeLength;
     }
 
-    public PasscodeView setPasscodeLength(int passcodeLength) {
+    public LockView setPasscodeLength(int passcodeLength) {
         this.passcodeLength = passcodeLength;
         return this;
     }
@@ -273,7 +273,7 @@ public class PasscodeView extends FrameLayout implements View.OnClickListener {
         return correctStatusColor;
     }
 
-    public PasscodeView setCorrectStatusColor(int correctStatusColor) {
+    public LockView setCorrectStatusColor(int correctStatusColor) {
         this.correctStatusColor = correctStatusColor;
         return this;
     }
@@ -282,7 +282,7 @@ public class PasscodeView extends FrameLayout implements View.OnClickListener {
         return wrongStatusColor;
     }
 
-    public PasscodeView setWrongStatusColor(int wrongStatusColor) {
+    public LockView setWrongStatusColor(int wrongStatusColor) {
         this.wrongStatusColor = wrongStatusColor;
         return this;
     }
@@ -291,7 +291,7 @@ public class PasscodeView extends FrameLayout implements View.OnClickListener {
         return normalStatusColor;
     }
 
-    public PasscodeView setNormalStatusColor(int normalStatusColor) {
+    public LockView setNormalStatusColor(int normalStatusColor) {
         this.normalStatusColor = normalStatusColor;
         return this;
     }
@@ -300,7 +300,7 @@ public class PasscodeView extends FrameLayout implements View.OnClickListener {
         return numberTextColor;
     }
 
-    public PasscodeView setNumberTextColor(int numberTextColor) {
+    public LockView setNumberTextColor(int numberTextColor) {
         this.numberTextColor = numberTextColor;
         return this;
     }
@@ -310,7 +310,7 @@ public class PasscodeView extends FrameLayout implements View.OnClickListener {
         return passcodeType;
     }
 
-    public PasscodeView setPasscodeType(@PasscodeViewType int passcodeType) {
+    public LockView setPasscodeType(@PasscodeViewType int passcodeType) {
         this.passcodeType = passcodeType;
         return this;
     }
@@ -527,7 +527,7 @@ public class PasscodeView extends FrameLayout implements View.OnClickListener {
         int TYPE_SET_PASSCODE = 0;
 
         /**
-         * check passcode, must pass the result as parameter {@link PasscodeView#setLocalPasscode(String)}
+         * check passcode, must pass the result as parameter {@link LockView#setLocalPasscode(String)}
          */
         int TYPE_CHECK_PASSCODE = 1;
     }
