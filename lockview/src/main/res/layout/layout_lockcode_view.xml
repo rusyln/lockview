@@ -17,7 +17,9 @@
             android:id="@+id/iv_lock"
             android:layout_width="32dp"
             android:layout_height="32dp"
+
             android:layout_centerInParent="true"
+            app:tint="@color/black"
             app:srcCompat="@drawable/lock"/>
 
         <ImageView

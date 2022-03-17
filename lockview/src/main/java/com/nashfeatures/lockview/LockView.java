@@ -356,7 +356,7 @@ public class LockView extends FrameLayout implements View.OnClickListener {
 
     private void next() {
         if (lockcodeType == LockcodeViewType.TYPE_CHECK_LOCKCODE && TextUtils.isEmpty(localLockcode)) {
-            throw new RuntimeException("must set localLockcode when type is TYPE_CHECK_LOCKCODE");
+            throw new RuntimeException("must set localLocked when type is TYPE_CHECK_LOCKCODE");
         }
 
         String psd = getLockcodeFromView();
