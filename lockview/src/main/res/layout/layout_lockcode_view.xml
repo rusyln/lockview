@@ -41,7 +41,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="16dp"
         android:letterSpacing="0.02"
-        android:textColor="#fff"
+        android:textColor="#2D2F31"
         android:textSize="16sp"/>
 
     <FrameLayout
