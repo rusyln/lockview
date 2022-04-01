@@ -141,7 +141,7 @@ public class LockView extends FrameLayout implements View.OnClickListener {
             }
         });
 
-        tintImageView(iv_lock, numberTextColor);
+
         tintImageView(numberB, numberTextColor);
         tintImageView(numberOK, numberTextColor);
         tintImageView(iv_ok, correctStatusColor);
