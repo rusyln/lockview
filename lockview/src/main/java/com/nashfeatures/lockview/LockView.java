@@ -156,6 +156,7 @@ public class LockView extends FrameLayout implements View.OnClickListener {
         number7.setTag(7);
         number8.setTag(8);
         number9.setTag(9);
+        tv_input_tip.setTextColor(numberTextColor);
         number0.setTextColor(numberTextColor);
         number1.setTextColor(numberTextColor);
         number2.setTextColor(numberTextColor);
