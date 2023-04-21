@@ -43,7 +43,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.github.rusyl' //your git id
                 artifactId = 'lockview' //your-repository
-                version = '1.0.8' // As same as the Tag
+                version = '1.0.9' // As same as the Tag
             }
         }
     }
