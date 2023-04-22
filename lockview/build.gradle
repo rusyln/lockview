@@ -21,12 +21,13 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
 
     // Optional: Set your library's namespace
     namespace 'com.nashfeatures.lockview'
+    buildToolsVersion '33.0.2'
 }
 
 dependencies {
@@ -42,7 +43,7 @@ afterEvaluate{
         from components.findByName(variant.name)
         groupId = 'com.rusyln'
         artifactId = 'lockview'
-        version='1.1.1'
+        version='1.1.2'
     }
 
     }
