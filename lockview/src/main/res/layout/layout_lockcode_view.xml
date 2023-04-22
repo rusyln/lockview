@@ -30,8 +30,8 @@
             android:alpha="0"
             android:scaleX="0"
             android:scaleY="0"
-            android:tint="#66e75d"
-            app:srcCompat="@drawable/ic_check_bold_24dp"/>
+            app:srcCompat="@drawable/ic_check_bold_24dp"
+            app:tint="#66e75d" />
     </RelativeLayout>
 
     <TextView
@@ -65,10 +65,7 @@
         </LinearLayout>
     </FrameLayout>
 
-    <androidx.legacy.widget.Space
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"/>
+
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -142,8 +139,8 @@
             android:layout_alignParentRight="true"
             android:layout_below="@id/number7"
             android:scaleType="centerInside"
-            android:tint="#FF8A8A8A"
-            app:srcCompat="@drawable/backspace"/>
+            app:srcCompat="@drawable/backspace"
+            app:tint="#FF8A8A8A" />
 
         <TextView
             android:id="@+id/number0"
@@ -159,8 +156,8 @@
             android:visibility="gone"
             android:layout_below="@id/number7"
             android:scaleType="centerInside"
-            android:tint="#FF8A8A8A"
-            app:srcCompat="@drawable/ic_check_bold_24dp"/>
+            app:srcCompat="@drawable/ic_check_bold_24dp"
+            app:tint="#FF8A8A8A" />
 
     </RelativeLayout>
 
